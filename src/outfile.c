@@ -472,13 +472,6 @@ int outfile_write (hashcat_ctx_t *hashcat_ctx, const char *out_buf, const int ou
     memcpy (tmp_buf + tmp_len, out_buf, out_len);
 
     tmp_len += out_len;
-
-    if (outfile_format & (OUTFILE_FMT_PLAIN | OUTFILE_FMT_HEXPLAIN | OUTFILE_FMT_CRACKPOS))
-    {
-      tmp_buf[tmp_len] = hashconfig->separator;
-
-      tmp_len += 1;
-    }
   }
 
   if (outfile_format & OUTFILE_FMT_PLAIN)

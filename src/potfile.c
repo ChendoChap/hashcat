@@ -263,9 +263,6 @@ void potfile_write_append (hashcat_ctx_t *hashcat_ctx, const char *out_buf, cons
 
     tmp_len += out_len;
 
-    tmp_buf[tmp_len] = hashconfig->separator;
-
-    tmp_len += 1;
   }
 
   if ((hashconfig->opts_type & OPTS_TYPE_POTFILE_NOPASS) == 0)
