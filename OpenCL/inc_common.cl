@@ -1295,6 +1295,24 @@ DECLSPEC int ffz (const u32 v)
 }
 
 #ifdef KERNEL_STATIC
+DECLSPEC int hash_comp_ps3 (const u32 *d1, GLOBAL_AS const u32 *d2)
+{
+  if (d1[0] > d2[DGST_R0]) return ( 1);
+  if (d1[0] < d2[DGST_R0]) return (-1);
+
+  return (0);
+}
+
+DECLSPEC int hash_comp_ps4 (const u32 *d1, GLOBAL_AS const u32 *d2)
+{
+  if (d1[1] > d2[DGST_R1]) return ( 1);
+  if (d1[1] < d2[DGST_R1]) return (-1);
+  if (d1[0] > d2[DGST_R0]) return ( 1);
+  if (d1[0] < d2[DGST_R0]) return (-1);
+
+  return (0);
+}
+
 DECLSPEC int hash_comp (const u32 *d1, GLOBAL_AS const u32 *d2)
 {
   if (d1[3] > d2[DGST_R3]) return ( 1);
@@ -1307,6 +1325,52 @@ DECLSPEC int hash_comp (const u32 *d1, GLOBAL_AS const u32 *d2)
   if (d1[0] < d2[DGST_R0]) return (-1);
 
   return (0);
+}
+
+DECLSPEC int find_hash_ps3 (const u32 *digest, const u32 digests_cnt, GLOBAL_AS const digest_t *digests_buf)
+{
+  for (u32 l = 0, r = digests_cnt; r; r >>= 1)
+  {
+    const u32 m = r >> 1;
+
+    const u32 c = l + m;
+
+    const int cmp = hash_comp_ps3 (digest, digests_buf[c].digest_buf);
+
+    if (cmp > 0)
+    {
+      l += m + 1;
+
+      r--;
+    }
+
+    if (cmp == 0) return (c);
+  }
+
+  return (-1);
+}
+
+DECLSPEC int find_hash_ps4 (const u32 *digest, const u32 digests_cnt, GLOBAL_AS const digest_t *digests_buf)
+{
+  for (u32 l = 0, r = digests_cnt; r; r >>= 1)
+  {
+    const u32 m = r >> 1;
+
+    const u32 c = l + m;
+
+    const int cmp = hash_comp_ps4 (digest, digests_buf[c].digest_buf);
+
+    if (cmp > 0)
+    {
+      l += m + 1;
+
+      r--;
+    }
+
+    if (cmp == 0) return (c);
+  }
+
+  return (-1);
 }
 
 DECLSPEC int find_hash (const u32 *digest, const u32 digests_cnt, GLOBAL_AS const digest_t *digests_buf)
