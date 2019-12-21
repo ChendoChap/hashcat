@@ -83,11 +83,8 @@ KERNEL_FQ void m21331_mxx (KERN_ATTR_VECTOR ())
     sha1_final_vector (&ctx);
 
     const u32x r0 = ctx.h[DGST_R0];
-    const u32x r1 = ctx.h[DGST_R1];
-    const u32x r2 = ctx.h[DGST_R2];
-    const u32x r3 = ctx.h[DGST_R3];
-
-    COMPARE_M_SIMD (r0, r0, r0, r0);
+	
+    COMPARE_M_SIMD_PS3 (r0);
   }
 }
 
@@ -172,10 +169,7 @@ KERNEL_FQ void m21331_sxx (KERN_ATTR_VECTOR ())
     sha1_final_vector (&ctx);
 
     const u32x r0 = ctx.h[DGST_R0];
-    const u32x r1 = ctx.h[DGST_R1];
-    const u32x r2 = ctx.h[DGST_R2];
-    const u32x r3 = ctx.h[DGST_R3];
 
-    COMPARE_S_SIMD (r0, r0, r0, r0);
+    COMPARE_S_SIMD_PS3 (r0);
   }
 }

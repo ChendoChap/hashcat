@@ -84,10 +84,8 @@ KERNEL_FQ void m21332_mxx (KERN_ATTR_VECTOR ())
 
     const u32x r0 = ctx.h[DGST_R0];
     const u32x r1 = ctx.h[DGST_R1];
-    const u32x r2 = ctx.h[DGST_R2];
-    const u32x r3 = ctx.h[DGST_R3];
 
-    COMPARE_M_SIMD (r0, r1, r0, r1);
+    COMPARE_M_SIMD_PS4 (r0, r1);
   }
 }
 
@@ -173,9 +171,7 @@ KERNEL_FQ void m21332_sxx (KERN_ATTR_VECTOR ())
 
     const u32x r0 = ctx.h[DGST_R0];
     const u32x r1 = ctx.h[DGST_R1];
-    const u32x r2 = ctx.h[DGST_R2];
-    const u32x r3 = ctx.h[DGST_R3];
 
-    COMPARE_S_SIMD (r0, r1, r0, r1);
+    COMPARE_S_SIMD_PS4 (r0, r1);
   }
 }

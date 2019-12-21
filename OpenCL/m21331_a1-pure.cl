@@ -66,11 +66,8 @@ KERNEL_FQ void m21331_mxx (KERN_ATTR_BASIC ())
     sha1_final (&ctx);
 
     const u32 r0 = ctx.h[DGST_R0];
-    const u32 r1 = ctx.h[DGST_R1];
-    const u32 r2 = ctx.h[DGST_R2];
-    const u32 r3 = ctx.h[DGST_R3];
 
-    COMPARE_M_SCALAR (r0, r0, r0, r0);
+    COMPARE_M_SCALAR_PS3 (r0);
   }
 }
 
@@ -138,10 +135,7 @@ KERNEL_FQ void m21331_sxx (KERN_ATTR_BASIC ())
     sha1_final (&ctx);
 
     const u32 r0 = ctx.h[DGST_R0];
-    const u32 r1 = ctx.h[DGST_R1];
-    const u32 r2 = ctx.h[DGST_R2];
-    const u32 r3 = ctx.h[DGST_R3];
 
-    COMPARE_S_SCALAR (r0, r0, r0, r0);
+    COMPARE_S_SCALAR_PS3 (r0);
   }
 }

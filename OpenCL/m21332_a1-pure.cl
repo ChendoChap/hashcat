@@ -67,10 +67,8 @@ KERNEL_FQ void m21332_mxx (KERN_ATTR_BASIC ())
 
     const u32 r0 = ctx.h[DGST_R0];
     const u32 r1 = ctx.h[DGST_R1];
-    const u32 r2 = ctx.h[DGST_R2];
-    const u32 r3 = ctx.h[DGST_R3];
 
-    COMPARE_M_SCALAR (r0, r1, r0, r1);
+    COMPARE_M_SCALAR_PS4 (r0, r1);
   }
 }
 
@@ -139,9 +137,7 @@ KERNEL_FQ void m21332_sxx (KERN_ATTR_BASIC ())
 
     const u32 r0 = ctx.h[DGST_R0];
     const u32 r1 = ctx.h[DGST_R1];
-    const u32 r2 = ctx.h[DGST_R2];
-    const u32 r3 = ctx.h[DGST_R3];
 
-    COMPARE_S_SCALAR (r0, r1, r0, r1);
+    COMPARE_S_SCALAR_PS4 (r0, r1);
   }
 }
